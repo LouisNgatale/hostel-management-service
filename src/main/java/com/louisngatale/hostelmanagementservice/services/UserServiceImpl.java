@@ -18,8 +18,8 @@ import java.util.*;
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService {
 
-/*    @Autowired
-    private RoleService roleService;*/
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private UserDao userDao;
@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         });
         return authorities;
     }
-
 
     @Override
     public List<User> findAll() {
