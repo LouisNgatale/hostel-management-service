@@ -35,7 +35,7 @@ public class User {
                     referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id",
                     referencedColumnName = "id")})
-    private List<Role> roles;
+    private List<Roles> roles;
 
     public User() {
 
@@ -45,7 +45,7 @@ public class User {
         return id;
     }
 
-    public User(String fullName, String gender, String loginId, String password, List<Role> roles) {
+    public User(String fullName, String gender, String loginId, String password, List<Roles> roles) {
         this.fullName = fullName;
         this.gender = gender;
         this.loginId = loginId;
@@ -97,11 +97,11 @@ public class User {
         this.studentDetails = studentDetails;
     }
 
-    public List<Role> getRoles() {
+    public List<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<Roles> roles) {
         this.roles = roles;
     }
 }

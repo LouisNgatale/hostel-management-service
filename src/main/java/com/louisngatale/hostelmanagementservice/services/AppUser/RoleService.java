@@ -1,7 +1,7 @@
 package com.louisngatale.hostelmanagementservice.services.AppUser;
 
-import com.louisngatale.hostelmanagementservice.entities.AppUser.Role;
+import com.louisngatale.hostelmanagementservice.entities.AppUser.Roles;
 
 public interface RoleService {
-    Role findByName(String name);
+    Roles findByName(String name);
 }

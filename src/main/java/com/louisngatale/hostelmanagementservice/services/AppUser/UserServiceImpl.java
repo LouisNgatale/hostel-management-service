@@ -1,4 +1,4 @@
-package com.louisngatale.hostelmanagementservice.services;
+package com.louisngatale.hostelmanagementservice.services.AppUser;
 
 import com.louisngatale.hostelmanagementservice.entities.AppUser.User;
 import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserDao;
@@ -18,8 +18,8 @@ import java.util.*;
 @Service(value = "userService")
 public class UserServiceImpl implements UserDetailsService, UserService {
 
-    @Autowired
-    private RoleService roleService;
+   /* @Autowired
+    private RoleService roleService;*/
 
     @Autowired
     private UserDao userDao;
@@ -29,9 +29,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userDao.findByloginId(username);
-        if(user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
+        user.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
         return new org.springframework.security.core.userdetails.User(user.get().getLoginId(),
                                                                         user.get().getPassword(),
                                                                         getAuthorities(user.get()));

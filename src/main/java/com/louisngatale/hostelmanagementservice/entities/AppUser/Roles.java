@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Role {
+public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

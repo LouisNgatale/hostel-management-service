@@ -1,7 +1,5 @@
-package com.louisngatale.hostelmanagementservice.entities;
+package com.louisngatale.hostelmanagementservice.entities.hostel;
 
-
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.louisngatale.hostelmanagementservice.entities;
+package com.louisngatale.hostelmanagementservice.entities.hostel;
 
 import javax.persistence.*;
 import java.util.List;

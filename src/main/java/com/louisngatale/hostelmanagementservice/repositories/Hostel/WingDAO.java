@@ -1,6 +1,6 @@
-package com.louisngatale.hostelmanagementservice.repositories;
+package com.louisngatale.hostelmanagementservice.repositories.Hostel;
 
-import com.louisngatale.hostelmanagementservice.entities.Wing;
+import com.louisngatale.hostelmanagementservice.entities.hostel.Wing;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
