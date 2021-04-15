@@ -1,9 +1,7 @@
 package com.louisngatale.hostelmanagementservice.services.AppUser;
 
 import com.louisngatale.hostelmanagementservice.entities.AppUser.User;
-import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserDao;
-import com.louisngatale.hostelmanagementservice.services.AppUser.RoleService;
-import com.louisngatale.hostelmanagementservice.services.AppUser.UserService;
+import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,22 +11,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service(value = "userService")
-public class UserServiceImpl implements UserDetailsService, UserService {
+@Transactional
+public class UserServiceImpl implements UserDetailsService {
 
    /* @Autowired
     private RoleService roleService;*/
 
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userDao.findByloginId(username);
+        System.out.println("User :" + username);
+        Optional<User> user = userRepository.findByLoginId(username);
+
         user.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         return new org.springframework.security.core.userdetails.User(user.get().getLoginId(),
@@ -44,13 +46,4 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return authorities;
     }
 
-    @Override
-    public List<User> findAll() {
-        return null;
-    }
-
-    @Override
-    public User findOne(String username) {
-        return null;
-    }
 }

@@ -28,14 +28,15 @@ public class UserDBConfig {
     //    Datasource methods
     @Bean
     @ConfigurationProperties("app.datasource.users")
-    public DataSourceProperties cardHolderDataSourceProperties() {
+    public DataSourceProperties userDataSourceProperties() {
         return new DataSourceProperties();
     }
+
     @Bean
     @ConfigurationProperties("app.datasource.users.configuration")
     public DataSource usersDataSource() {
-        return cardHolderDataSourceProperties().initializeDataSourceBuilder()
-                .type(HikariDataSource.class).build();
+        return userDataSourceProperties().initializeDataSourceBuilder()
+                .build();
     }
 
     //    LocalContainerEntityManagerFactoryBean

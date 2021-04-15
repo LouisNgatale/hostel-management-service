@@ -22,15 +22,16 @@ import javax.annotation.Resource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-//    @Resource(name = "userService")
-//    private UserDetailsService userDetailsService;
+    @Resource(name = "userService")
+    private UserDetailsService userDetailsService;
 
 /*    @Autowired
     private UnauthorizedEntryPoint unauthorizedEntryPoint;*/
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(encoder());
     }
 
     /*@Override

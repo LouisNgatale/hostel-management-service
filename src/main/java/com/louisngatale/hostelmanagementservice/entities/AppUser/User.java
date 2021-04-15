@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,7 +19,7 @@ public class User {
 
     private String gender;
 
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true,name = "login_id")
     private String loginId;
 
     @Column(nullable=false)
@@ -44,6 +45,8 @@ public class User {
     public Integer getId() {
         return id;
     }
+
+
 
     public User(String fullName, String gender, String loginId, String password, List<Roles> roles) {
         this.fullName = fullName;

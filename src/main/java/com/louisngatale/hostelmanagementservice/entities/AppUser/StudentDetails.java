@@ -4,11 +4,15 @@ package com.louisngatale.hostelmanagementservice.entities.AppUser;
 import javax.persistence.*;
 
 @Entity
+@Table(name="student_details")
 public class StudentDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
+
+    public StudentDetails() {
+    }
 
     private String level;
 
@@ -18,8 +22,10 @@ public class StudentDetails {
 
     private String course;
 
+    @Column(name="year_of_study")
     private String yearOfStudy;
 
+    @Column(name="phone_number")
     private Long phoneNumber;
 
     public Long getPhoneNumber() {
