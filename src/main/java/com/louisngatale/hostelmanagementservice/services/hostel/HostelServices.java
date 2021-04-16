@@ -2,8 +2,10 @@ package com.louisngatale.hostelmanagementservice.services.hostel;
 
 import com.louisngatale.hostelmanagementservice.entities.hostel.Floor;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Hostel;
+import com.louisngatale.hostelmanagementservice.entities.hostel.Room;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Wing;
 import com.louisngatale.hostelmanagementservice.models.responses.FloorsResponse;
+import com.louisngatale.hostelmanagementservice.models.responses.HostelResponse;
 import com.louisngatale.hostelmanagementservice.models.responses.RoomsResponse;
 import com.louisngatale.hostelmanagementservice.repositories.Hostel.FloorDao;
 import com.louisngatale.hostelmanagementservice.repositories.Hostel.HostelDAO;
@@ -75,5 +77,27 @@ public class HostelServices {
         });
 
         return new RoomsResponse(rooms);
+    }
+
+    public HostelResponse getRoom(String hostel, String wing, String floor,String room){
+//        Find hostel and obtain id and throw an error if not found
+        Optional<Hostel> hostelObj = hostelDAO.findByHostel(hostel);
+        hostelObj .orElseThrow(() ->  new IllegalStateException("Hostel not found"));
+
+        //        Find wing with given hostel id
+        Wing wingObj = wingDAO.findByWingAndHostel_Id(wing,hostelObj.get().getId());
+        System.out.println("Wing rooms:" + wingObj.getWing());
+        System.out.println("Wing id:" + wingObj.getId());
+
+        Floor floorObj = floorDao.findByFloorAndWing_Id(floor,wingObj.getId());
+        System.out.println("Floor  " + floorObj.getFloor());
+        System.out.println("Flooor id " + floorObj.getId());
+
+        System.out.println("Flooor rooms" + floorObj.getRooms());
+
+
+        Room roomObj = roomDAO.findByRoomAndFloor_Id(room, floorObj.getId());
+
+        return new HostelResponse(hostel,wing,floor,roomObj.getId(),room,"Available","Good");
     }
 }

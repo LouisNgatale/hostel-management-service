@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/hostel")
-public class StudentController {
+public class CategoriesController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -37,4 +37,7 @@ public class StudentController {
                                    @PathVariable String floor){
         return ResponseEntity.ok(hostelServices.getRooms(hostel,wing,floor));
     }
+
+
+
 }
