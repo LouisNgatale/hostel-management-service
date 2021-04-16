@@ -19,6 +19,10 @@ public class Hostel {
     public Hostel() {
     }
 
+    public Hostel(String hostel) {
+        this.hostel = hostel;
+    }
+
     public Hostel(Integer id, String hostel, List<Wing> wings) {
         this.id = id;
         this.hostel = hostel;

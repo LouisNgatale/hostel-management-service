@@ -2,6 +2,7 @@ package com.louisngatale.hostelmanagementservice.controllers;
 
 
 import com.louisngatale.hostelmanagementservice.security.jwt.TokenProvider;
+import com.louisngatale.hostelmanagementservice.services.hostel.HostelServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,14 +17,19 @@ public class StudentController {
 
     @Autowired
     private TokenProvider jwtTokenUtil;
+
+    @Autowired
+    private HostelServices hostelServices;
+
 //    TODO: Handle expired token exception
 //    Get floors for a specific hostel-wing
     @RequestMapping(value = "/{hostel}/{wing}", method = RequestMethod.GET)
-    public String floors(@PathVariable String hostel,
+    public ResponseEntity<?> floors(@PathVariable String hostel,
                                     @PathVariable String wing){
 
 
-        return hostel + " " + wing + " ";
+
+        return ResponseEntity.ok(hostelServices.getFloors(hostel,wing));
     }
 
 //    Get rooms for a specific hostel-wing-floor
