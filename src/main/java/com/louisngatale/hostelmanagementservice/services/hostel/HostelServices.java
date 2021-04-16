@@ -5,6 +5,7 @@ import com.louisngatale.hostelmanagementservice.entities.hostel.Hostel;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Room;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Wing;
 import com.louisngatale.hostelmanagementservice.models.responses.FloorsResponse;
+import com.louisngatale.hostelmanagementservice.models.responses.GetByFloorsResponse;
 import com.louisngatale.hostelmanagementservice.models.responses.HostelResponse;
 import com.louisngatale.hostelmanagementservice.models.responses.RoomsResponse;
 import com.louisngatale.hostelmanagementservice.repositories.Hostel.FloorDao;
@@ -79,7 +80,7 @@ public class HostelServices {
         return new RoomsResponse(rooms);
     }
 
-    public HostelResponse getRoom(String hostel, String wing, String floor,String room){
+    public HostelResponse getByRooms(String hostel, String wing, String floor, String room){
 //        Find hostel and obtain id and throw an error if not found
         Optional<Hostel> hostelObj = hostelDAO.findByHostel(hostel);
         hostelObj .orElseThrow(() ->  new IllegalStateException("Hostel not found"));
@@ -95,9 +96,46 @@ public class HostelServices {
 
         System.out.println("Flooor rooms" + floorObj.getRooms());
 
-
         Room roomObj = roomDAO.findByRoomAndFloor_Id(room, floorObj.getId());
 
         return new HostelResponse(hostel,wing,floor,roomObj.getId(),room,"Available","Good");
+    }
+
+    public GetByFloorsResponse getByFloors(String hostel, String wing, String floor){
+        //        Find hostel and obtain id and throw an error if not found
+        Optional<Hostel> hostelObj = hostelDAO.findByHostel(hostel);
+        hostelObj .orElseThrow(() ->  new IllegalStateException("Hostel not found"));
+
+        //        Find wing with given hostel id
+        Wing wingObj = wingDAO.findByWingAndHostel_Id(wing,hostelObj.get().getId());
+        System.out.println("Wing rooms:" + wingObj.getWing());
+        System.out.println("Wing id:" + wingObj.getId());
+
+        Floor floorObj = floorDao.findByFloorAndWing_Id(floor,wingObj.getId());
+        System.out.println("Floor  " + floorObj.getFloor());
+        System.out.println("Flooor id " + floorObj.getId());
+
+        System.out.println("Flooor rooms" + floorObj.getRooms());
+
+        List<Room> roomObj = roomDAO.findByFloor_Id(floorObj.getId());
+
+        List<HostelResponse> hostelResponses = new ArrayList<>();
+        roomObj.forEach(item ->{
+            hostelResponses.add(new HostelResponse(hostel,wing,floor,item.getId(),item.getRoom(),"Available","Good"));
+        });
+
+        return new GetByFloorsResponse(hostelResponses);
+    }
+
+    public HostelResponse getByWing(String hostel, String wing){
+        return null;
+    }
+
+    public HostelResponse getByHostel(String hostel){
+        return null;
+    }
+
+    public HostelResponse getAll(){
+        return null;
     }
 }
