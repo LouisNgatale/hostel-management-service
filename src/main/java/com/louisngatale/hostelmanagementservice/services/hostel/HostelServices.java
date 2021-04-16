@@ -127,8 +127,28 @@ public class HostelServices {
         return new GetByFloorsResponse(hostelResponses);
     }
 
-    public HostelResponse getByWing(String hostel, String wing){
-        return null;
+    public GetByFloorsResponse getByWing(String hostel, String wing){
+//        Find hostel and obtain id and throw an error if not found
+        Optional<Hostel> hostelObj = hostelDAO.findByHostel(hostel);
+        hostelObj .orElseThrow(() ->  new IllegalStateException("Hostel not found"));
+
+//        Find wing with given hostel id
+        Wing wingObj = wingDAO.findByWingAndHostel_Id(wing,hostelObj.get().getId());
+
+//        List of floors
+        List<Floor> floorObj = floorDao.findByWing_Id(wingObj.getId());
+
+//        Get rooms
+        List<HostelResponse> hostelResponses = new ArrayList<>();
+
+//        Loop through each floor and add floor's room to array
+        floorObj.forEach(item -> {
+            item.getRooms().forEach(i -> {
+                hostelResponses.add(new HostelResponse(hostel,wing,item.getFloor(),i.getId(),i.getRoom(),"Available","Good"));
+            });
+        });
+
+        return new GetByFloorsResponse(hostelResponses);
     }
 
     public HostelResponse getByHostel(String hostel){
