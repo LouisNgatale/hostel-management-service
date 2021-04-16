@@ -14,7 +14,7 @@ public class Floor {
     @ManyToOne
     private Wing wing;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "floor")
     private List<Room> rooms;
 
     public Floor() {
