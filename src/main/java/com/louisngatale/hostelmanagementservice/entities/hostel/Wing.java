@@ -14,19 +14,19 @@ public class Wing {
     private String wing;
 
     @ManyToOne
-    private Block block;
+    private Hostel hostel;
 
-    @OneToMany(mappedBy = "room")
-    private List<Room> rooms;
+    @OneToMany(mappedBy = "wing")
+    private List<Floor> floors;
 
     public Wing() {
     }
 
-    public Wing(Integer id, String wing, Block block, List<Room> rooms) {
+    public Wing(Integer id, String wing, Hostel hostel, List<Floor> floors) {
         this.id = id;
         this.wing = wing;
-        this.block = block;
-        this.rooms = rooms;
+        this.hostel = hostel;
+        this.floors = floors;
     }
 
     public Integer getId() {
@@ -45,19 +45,19 @@ public class Wing {
         this.wing = wing;
     }
 
-    public Block getBlock() {
-        return block;
+    public Hostel getHostel() {
+        return hostel;
     }
 
-    public void setBlock(Block block) {
-        this.block = block;
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
     }
 
-    public List<Room> getRooms() {
-        return rooms;
+    public List<Floor> getFloors() {
+        return floors;
     }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
+    public void setFloors(List<Floor> floors) {
+        this.floors = floors;
     }
 }

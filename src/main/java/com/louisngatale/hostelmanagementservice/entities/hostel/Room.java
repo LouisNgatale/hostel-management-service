@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 @Entity
 public class Room {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -17,17 +16,17 @@ public class Room {
     private String owner;
 
     @ManyToOne
-    private Wing wing;
+    private Floor floor;
 
     public Room() {
     }
 
-    public Room(Integer id, String room, Boolean occupied, String owner, Wing wing) {
+    public Room(Integer id, String room, Boolean occupied, String owner, Floor floor) {
         this.id = id;
         this.room = room;
         this.occupied = occupied;
         this.owner = owner;
-        this.wing = wing;
+        this.floor = floor;
     }
 
     public Integer getId() {
@@ -62,11 +61,11 @@ public class Room {
         this.owner = owner;
     }
 
-    public Wing getWing() {
-        return wing;
+    public Floor getFloor() {
+        return floor;
     }
 
-    public void setWing(Wing wing) {
-        this.wing = wing;
+    public void setFloor(Floor floor) {
+        this.floor = floor;
     }
 }

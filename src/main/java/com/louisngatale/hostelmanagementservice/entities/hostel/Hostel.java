@@ -14,15 +14,15 @@ public class Hostel {
     private String hostel;
 
     @OneToMany(mappedBy = "hostel")
-    private List<Block> blocks;
+    private List<Wing> wings;
 
     public Hostel() {
     }
 
-    public Hostel(Integer id, String hostel, List<Block> blocks) {
+    public Hostel(Integer id, String hostel, List<Wing> wings) {
         this.id = id;
         this.hostel = hostel;
-        this.blocks = blocks;
+        this.wings = wings;
     }
 
     public Integer getId() {
@@ -41,11 +41,11 @@ public class Hostel {
         this.hostel = hostel;
     }
 
-    public List<Block> getBlocks() {
-        return blocks;
+    public List<Wing> getWings() {
+        return wings;
     }
 
-    public void setBlocks(List<Block> blocks) {
-        this.blocks = blocks;
+    public void setWings(List<Wing> wings) {
+        this.wings = wings;
     }
 }

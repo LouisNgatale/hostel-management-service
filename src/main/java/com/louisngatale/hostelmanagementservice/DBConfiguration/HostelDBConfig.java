@@ -1,12 +1,7 @@
 package com.louisngatale.hostelmanagementservice.DBConfiguration;
 
-import com.louisngatale.hostelmanagementservice.entities.hostel.Block;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Hostel;
-import com.louisngatale.hostelmanagementservice.entities.hostel.Room;
-import com.louisngatale.hostelmanagementservice.entities.hostel.Wing;
 import com.zaxxer.hikari.HikariDataSource;
-import org.hibernate.cfg.Environment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
