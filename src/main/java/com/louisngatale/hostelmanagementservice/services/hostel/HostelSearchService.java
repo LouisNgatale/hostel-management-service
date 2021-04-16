@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class HostelServices {
+public class HostelSearchService {
     @Autowired
     private HostelDAO hostelDAO;
 
