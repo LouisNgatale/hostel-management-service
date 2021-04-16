@@ -169,7 +169,22 @@ public class HostelServices {
         return new GetByFloorsResponse(hostelResponses);
     }
 
-    public HostelResponse getAll(){
-        return null;
+    public GetByFloorsResponse getAll(){
+        //        Find hostel and obtain id and throw an error if not found
+        List<HostelResponse> hostelResponses = new ArrayList<>();
+
+        List<Hostel> hostelObj = hostelDAO.findAll();
+
+        hostelObj.forEach(hostel -> {
+            hostel.getWings().forEach(wing -> {
+                wing.getFloors().forEach(floor -> {
+                    floor.getRooms().forEach(i -> {
+                        hostelResponses.add(new HostelResponse(hostel.getHostel(),wing.getWing(),floor.getFloor(),i.getId(),i.getRoom(),"Available","Good"));
+                    });
+                });
+            });
+        });
+
+        return new GetByFloorsResponse(hostelResponses);
     }
 }
