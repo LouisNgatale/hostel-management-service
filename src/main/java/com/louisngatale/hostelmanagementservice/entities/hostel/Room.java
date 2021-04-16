@@ -18,13 +18,34 @@ public class Room {
     @ManyToOne
     private Floor floor;
 
+    @OneToMany(mappedBy = "room")
+    private List<Requests> requests;
+
     public Room() {
     }
 
-    public Room(Integer id, String room, Floor floor) {
+    public Room(Integer id, String room, List<Bed> beds, Floor floor, List<Requests> requests) {
         this.id = id;
         this.room = room;
+        this.beds = beds;
         this.floor = floor;
+        this.requests = requests;
+    }
+
+    public List<Bed> getBeds() {
+        return beds;
+    }
+
+    public void setBeds(List<Bed> beds) {
+        this.beds = beds;
+    }
+
+    public List<Requests> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Requests> requests) {
+        this.requests = requests;
     }
 
     public Integer getId() {
