@@ -151,8 +151,22 @@ public class HostelServices {
         return new GetByFloorsResponse(hostelResponses);
     }
 
-    public HostelResponse getByHostel(String hostel){
-        return null;
+    public GetByFloorsResponse getByHostel(String hostel){
+        //        Find hostel and obtain id and throw an error if not found
+        Optional<Hostel> hostelObj = hostelDAO.findByHostel(hostel);
+        hostelObj .orElseThrow(() ->  new IllegalStateException("Hostel not found"));
+
+        List<HostelResponse> hostelResponses = new ArrayList<>();
+
+        hostelObj.get().getWings().forEach(wing -> {
+            wing.getFloors().forEach(floor -> {
+                floor.getRooms().forEach(i -> {
+                    hostelResponses.add(new HostelResponse(hostel,wing.getWing(),floor.getFloor(),i.getId(),i.getRoom(),"Available","Good"));
+                });
+            });
+        });
+
+        return new GetByFloorsResponse(hostelResponses);
     }
 
     public HostelResponse getAll(){
