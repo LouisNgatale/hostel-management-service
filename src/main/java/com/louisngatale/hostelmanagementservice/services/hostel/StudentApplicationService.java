@@ -68,7 +68,7 @@ public class StudentApplicationService {
                    System.out.println("Allocated");
                    System.out.println(result);
                    System.out.println(result2);
-                return new ApplicationResponse("Successfully allocated!");
+                return new ApplicationResponse("Successfully allocated!","Success");
             }else if (bedCount.size() > 0){
                     Optional<Bed> bed =  bedCount.stream().findFirst();
                     Requests request = new Requests();
@@ -76,14 +76,14 @@ public class StudentApplicationService {
                     request.setRoom(room.get());
                     System.out.println("Requested");
                     requestsDao.save(request);
-                return new ApplicationResponse("Request has been placed!");
+                return new ApplicationResponse("Request has been placed!","Success");
 
             }else {
 //            User is already allocated
-                return new ApplicationResponse("You have already been allocated!");
+                return new ApplicationResponse("You have already been allocated!","Warning");
             }
         }else {
-            return new ApplicationResponse("User is already allocated!");
+            return new ApplicationResponse("User is already allocated!","Danger");
         }
 
     }
