@@ -28,7 +28,6 @@ public class UserServiceImpl implements UserDetailsService {
     private BCryptPasswordEncoder bcryptEncoder;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("User :" + username);
         Optional<User> user = userRepository.findByLoginId(username);
 
         user.orElseThrow(() -> new UsernameNotFoundException("User not found"));

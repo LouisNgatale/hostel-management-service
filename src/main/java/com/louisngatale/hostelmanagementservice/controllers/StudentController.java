@@ -22,12 +22,11 @@ public class StudentController {
     private HostelServices hostelServices;
 
 //    TODO: Handle expired token exception
+
 //    Get floors for a specific hostel-wing
     @RequestMapping(value = "/{hostel}/{wing}", method = RequestMethod.GET)
     public ResponseEntity<?> floors(@PathVariable String hostel,
                                     @PathVariable String wing){
-
-
 
         return ResponseEntity.ok(hostelServices.getFloors(hostel,wing));
     }
