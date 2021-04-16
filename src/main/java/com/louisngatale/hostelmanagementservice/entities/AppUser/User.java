@@ -26,6 +26,7 @@ public class User {
     @JsonIgnore
     private String password;
 
+
     @OneToOne(mappedBy = "studentId")
     private StudentDetails studentDetails;
 
@@ -45,8 +46,6 @@ public class User {
     public Integer getId() {
         return id;
     }
-
-
 
     public User(String fullName, String gender, String loginId, String password, List<Roles> roles) {
         this.fullName = fullName;

@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface RoomDAO extends JpaRepository<Room,Integer> {
     Room findByRoomAndFloor_Id(String room, Integer floor);
     List<Room> findByFloor_Id(Integer floor);
+    Optional<Room> findById(Integer roomId);
 }

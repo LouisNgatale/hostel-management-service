@@ -1,7 +1,7 @@
 package com.louisngatale.hostelmanagementservice.services.AppUser;
 
 import com.louisngatale.hostelmanagementservice.entities.AppUser.User;
-import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserRepository;
+import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,13 +22,13 @@ public class UserServiceImpl implements UserDetailsService {
     private RoleService roleService;*/
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDao userDao;
 
     @Autowired
     private BCryptPasswordEncoder bcryptEncoder;
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByLoginId(username);
+        Optional<User> user = userDao.findByLoginId(username);
 
         user.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 

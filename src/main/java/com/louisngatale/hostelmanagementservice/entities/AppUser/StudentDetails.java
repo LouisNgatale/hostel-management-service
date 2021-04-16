@@ -11,8 +11,13 @@ public class StudentDetails {
     @Column(name = "id")
     private Integer id;
 
+    private String sponsorship = "PERSONAL";
+
+    private String roomId;
+
     public StudentDetails() {
     }
+
 
     private String level;
 
@@ -28,8 +33,32 @@ public class StudentDetails {
     @Column(name="phone_number")
     private Long phoneNumber;
 
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
     public Long getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSponsorship() {
+        return sponsorship;
+    }
+
+    public void setSponsorship(String sponsorship) {
+        this.sponsorship = sponsorship;
     }
 
     public void setPhoneNumber(Long phoneNumber) {
