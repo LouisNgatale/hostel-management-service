@@ -2,6 +2,7 @@ package com.louisngatale.hostelmanagementservice.entities.hostel;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Room {
@@ -11,9 +12,8 @@ public class Room {
 
     private String room;
 
-    private Boolean occupied;
-
-    private String owner;
+    @OneToMany(mappedBy = "room")
+    private List<Bed> beds;
 
     @ManyToOne
     private Floor floor;
@@ -21,11 +21,9 @@ public class Room {
     public Room() {
     }
 
-    public Room(Integer id, String room, Boolean occupied, String owner, Floor floor) {
+    public Room(Integer id, String room, Floor floor) {
         this.id = id;
         this.room = room;
-        this.occupied = occupied;
-        this.owner = owner;
         this.floor = floor;
     }
 
@@ -43,22 +41,6 @@ public class Room {
 
     public void setRoom(String room) {
         this.room = room;
-    }
-
-    public Boolean getOccupied() {
-        return occupied;
-    }
-
-    public void setOccupied(Boolean occupied) {
-        this.occupied = occupied;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 
     public Floor getFloor() {

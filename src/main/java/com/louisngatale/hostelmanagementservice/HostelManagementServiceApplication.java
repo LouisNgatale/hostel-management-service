@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 public class HostelManagementServiceApplication {
 
+//    TODO: Create pending requests table
     public static void main(String[] args) {
         SpringApplication.run(HostelManagementServiceApplication.class, args);
     }
