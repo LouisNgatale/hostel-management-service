@@ -42,17 +42,12 @@ public class StudentApplicationService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         Optional<User> user1 = userDao.findByLoginId(username);
-
         User user = user1.get();
         String sponsorship =  user.getStudentDetails().getSponsorship();
         int userId = user.getId();
-
 //        Check if user is already allocated
         if (user.getStudentDetails().getRoomId() == null ){
-//            Room count
             List<Bed> bedCount = new ArrayList<>();
-
-//        Search room
             Optional<Room> room = roomDAO.findById(Integer.valueOf(roomId));
             room.get().getBeds().forEach(item ->{
                 if (item.getOccupied() == null){
@@ -63,29 +58,22 @@ public class StudentApplicationService {
             if (bedCount.size() > 0 && sponsorship.equals("GOVERNMENT")){
                    Optional<Bed> bed =  bedCount.stream().findFirst();
                    int result = bedDao.updateOwner(username,bed.get().getId());
-                System.out.println(userId);
                    int result2 = studentDetailsDao.updateBedId(user,roomId);
-                   System.out.println("Allocated");
-                   System.out.println(result);
-                   System.out.println(result2);
                 return new ApplicationResponse("Successfully allocated!","Success");
             }else if (bedCount.size() > 0){
                     Optional<Bed> bed =  bedCount.stream().findFirst();
                     Requests request = new Requests();
                     request.setRequestedBy(userId);
                     request.setRoom(room.get());
-                    System.out.println("Requested");
                     requestsDao.save(request);
                 return new ApplicationResponse("Request has been placed!","Success");
 
             }else {
-//            User is already allocated
-                return new ApplicationResponse("You have already been allocated!","Warning");
+                return new ApplicationResponse("Room is full!","Danger");
             }
         }else {
-            return new ApplicationResponse("Room is alreay take!","Danger");
+            return new ApplicationResponse("You already have a room!","Danger");
         }
-
     }
 
 }
