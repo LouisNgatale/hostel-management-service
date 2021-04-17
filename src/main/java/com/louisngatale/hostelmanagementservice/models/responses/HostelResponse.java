@@ -8,6 +8,8 @@ public class HostelResponse {
     private String Room;
     private String availability;
     private String condition;
+    private String status;
+
 
     public HostelResponse() {
     }
@@ -20,6 +22,17 @@ public class HostelResponse {
         Room = room;
         this.availability = availability;
         this.condition = condition;
+    }
+
+    public HostelResponse(String hostel, String wing, String floor, Integer roomId, String room, String availability, String condition, String status) {
+        this.hostel = hostel;
+        this.wing = wing;
+        this.floor = floor;
+        this.roomId = roomId;
+        Room = room;
+        this.availability = availability;
+        this.condition = condition;
+        this.status = status;
     }
 
     public String getHostel() {

@@ -5,6 +5,8 @@ import com.louisngatale.hostelmanagementservice.entities.hostel.Bed;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Requests;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Room;
 import com.louisngatale.hostelmanagementservice.models.responses.ApplicationResponse;
+import com.louisngatale.hostelmanagementservice.models.responses.HostelResponse;
+import com.louisngatale.hostelmanagementservice.models.responses.RoomRequestsResponse;
 import com.louisngatale.hostelmanagementservice.repositories.AppUser.StudentDetailsDao;
 import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserDao;
 import com.louisngatale.hostelmanagementservice.repositories.Hostel.*;
@@ -74,6 +76,31 @@ public class StudentApplicationService {
         }else {
             return new ApplicationResponse("You already have a room!","Danger");
         }
+    }
+
+    public RoomRequestsResponse getRequests(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        Optional<User> user1 = userDao.findByLoginId(username);
+        User user = user1.get();
+
+        List<Requests> requests = requestsDao.findByRequestedBy(user.getId());
+
+        List<HostelResponse> responses = new ArrayList<>();
+
+        requests.forEach(item -> {
+            String hostel = item.getRoom().getFloor().getWing().getHostel().getHostel();
+            String wing = item.getRoom().getFloor().getWing().getWing();
+            String floor = item.getRoom().getFloor().getFloor();
+            String room = item.getRoom().getRoom();
+            Integer room_id = item.getRoom().getId();
+            String availability = "AVAILABLE";
+            String condition = "GOOD";
+            String status = item.getStatus();
+            responses.add(new HostelResponse(hostel,wing,floor,room_id,room,availability,condition,status));
+        });
+
+        return new RoomRequestsResponse(responses);
     }
 
 }
