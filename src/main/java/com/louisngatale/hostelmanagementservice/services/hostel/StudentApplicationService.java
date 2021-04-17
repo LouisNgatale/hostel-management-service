@@ -64,7 +64,7 @@ public class StudentApplicationService {
                    Optional<Bed> bed =  bedCount.stream().findFirst();
                    int result = bedDao.updateOwner(username,bed.get().getId());
                 System.out.println(userId);
-                   int result2 = studentDetailsDao.updateBedId(userId,roomId);
+                   int result2 = studentDetailsDao.updateBedId(user,roomId);
                    System.out.println("Allocated");
                    System.out.println(result);
                    System.out.println(result2);
@@ -83,7 +83,7 @@ public class StudentApplicationService {
                 return new ApplicationResponse("You have already been allocated!","Warning");
             }
         }else {
-            return new ApplicationResponse("User is already allocated!","Danger");
+            return new ApplicationResponse("Room is alreay take!","Danger");
         }
 
     }

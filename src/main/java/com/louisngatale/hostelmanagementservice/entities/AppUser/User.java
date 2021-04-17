@@ -14,7 +14,7 @@ public class User {
     @Column(name = "id")
     private Integer id;
 
-    @Column(nullable=false)
+    @Column(nullable=false,name = "full_name")
     private String fullName;
 
     private String gender;
