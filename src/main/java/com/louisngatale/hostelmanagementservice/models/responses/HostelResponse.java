@@ -90,4 +90,12 @@ public class HostelResponse {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

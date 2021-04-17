@@ -1,7 +1,6 @@
 package com.louisngatale.hostelmanagementservice.controllers;
 
 import com.louisngatale.hostelmanagementservice.models.requests.ApplicationRequest;
-import com.louisngatale.hostelmanagementservice.models.responses.ApplicationResponse;
 import com.louisngatale.hostelmanagementservice.services.hostel.StudentApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
