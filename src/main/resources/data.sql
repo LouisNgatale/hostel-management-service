@@ -20,7 +20,7 @@ INSERT INTO wing (wing,hostel_id) VALUES ('WING A',4); #7
 INSERT INTO wing (wing,hostel_id) VALUES ('WING B',4); #8
 # BLOCK 5
 INSERT INTO wing (wing,hostel_id) VALUES ('WING A',5); #9
-INSERT INTO wing (wing,hostel_id) VALUES ('WING B',6); #10
+INSERT INTO wing (wing,hostel_id) VALUES ('WING B',5); #10
 
 # INSERT FLOORS
 # BLOCK 1
