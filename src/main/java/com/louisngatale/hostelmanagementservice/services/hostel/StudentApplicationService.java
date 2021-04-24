@@ -102,5 +102,4 @@ public class StudentApplicationService {
 
         return new RoomRequestsResponse(responses);
     }
-
 }
