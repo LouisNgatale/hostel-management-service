@@ -9,6 +9,8 @@ public class HostelResponse {
     private String availability;
     private String condition;
     private String status;
+    private String studentName;
+    private Integer requestedBy;
 
 
     public HostelResponse() {
@@ -33,6 +35,34 @@ public class HostelResponse {
         this.availability = availability;
         this.condition = condition;
         this.status = status;
+    }
+    public HostelResponse(String hostel, String wing, String floor, Integer roomId, String room, String availability, String condition, String status,String studentName,Integer requestedBy) {
+        this.hostel = hostel;
+        this.wing = wing;
+        this.floor = floor;
+        this.roomId = roomId;
+        Room = room;
+        this.availability = availability;
+        this.condition = condition;
+        this.status = status;
+        this.studentName = studentName;
+        this.requestedBy = requestedBy;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public Integer getRequestedBy() {
+        return requestedBy;
+    }
+
+    public void setRequestedBy(Integer requestedBy) {
+        this.requestedBy = requestedBy;
     }
 
     public String getHostel() {

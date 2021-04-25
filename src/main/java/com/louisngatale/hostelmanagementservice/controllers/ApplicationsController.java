@@ -23,4 +23,5 @@ public class ApplicationsController {
     public ResponseEntity<?> getRequests(){
         return ResponseEntity.ok(studentApplicationService.getRequests());
     }
+
 }
