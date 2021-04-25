@@ -50,9 +50,10 @@ public class StudentApplicationService {
 //        Check if user is already allocated
         if (user.getStudentDetails().getRoomId() == null ){
             List<Bed> bedCount = new ArrayList<>();
+
             Optional<Room> room = roomDAO.findById(Integer.valueOf(roomId));
             room.get().getBeds().forEach(item ->{
-                if (item.getOccupied() == null){
+                if (!item.getOccupied()){
                     bedCount.add(item);
                 }
             });
