@@ -109,7 +109,14 @@ public class WardenService {
     public OccupiedBeds beds() {
         List<BedSingleResponse> responses = new ArrayList<>();
         bedDao.findAllByOccupied(true).forEach(item -> {
-            responses.add(new BedSingleResponse(item.getId(),item.getBed(),item.getOwner(),item.getRoom().getId()));
+            Optional<User> user = userDao.findByLoginId(item.getOwner());
+            String hostel = item.getRoom().getFloor().getWing().getHostel().getHostel();
+            String wing = item.getRoom().getFloor().getWing().getWing();
+            String floor = item.getRoom().getFloor().getFloor();
+            String room = item.getRoom().getRoom();
+            Integer room_id = item.getRoom().getId();
+            String studentName = user.get().getFullName();
+            responses.add(new BedSingleResponse(hostel,wing,floor,room,room_id,studentName));
         });
         return new OccupiedBeds(responses);
     }
