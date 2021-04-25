@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -15,4 +16,6 @@ public interface BedDao extends JpaRepository<Bed,Integer> {
     @Modifying
     @Query("update Bed bed set bed.owner = :owner, bed.occupied = true where bed.id = :id")
     int updateOwner(@Param("owner") String owner, @Param("id") Integer id);
+
+    List<Bed> findAllByOccupied(Boolean occoupied);
 }

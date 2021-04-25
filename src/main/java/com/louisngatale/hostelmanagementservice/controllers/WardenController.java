@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/hoste/warden")
+@RequestMapping("/api/hostel/warden")
 public class WardenController {
 
     @Autowired
@@ -25,8 +25,13 @@ public class WardenController {
         return ResponseEntity.ok(wardenService.accept(request));
     }
 
-    @RequestMapping(value = "/applications/{id}/deny",method = RequestMethod.PUT)
+    @RequestMapping(value = "/applications/{id}/deny",method = RequestMethod.POST)
     public ResponseEntity<?> deny(@RequestBody ApplicationRequest request){
         return ResponseEntity.ok(wardenService.deny(request));
+    }
+
+    @RequestMapping(value = "/occupied/beds",method = RequestMethod.GET)
+    public ResponseEntity<?> beds(){
+        return ResponseEntity.ok(wardenService.beds());
     }
 }

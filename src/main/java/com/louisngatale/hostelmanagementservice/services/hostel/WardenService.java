@@ -5,7 +5,9 @@ import com.louisngatale.hostelmanagementservice.entities.hostel.Bed;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Requests;
 import com.louisngatale.hostelmanagementservice.entities.hostel.Room;
 import com.louisngatale.hostelmanagementservice.models.requests.ApplicationRequest;
+import com.louisngatale.hostelmanagementservice.models.responses.BedSingleResponse;
 import com.louisngatale.hostelmanagementservice.models.responses.HostelResponse;
+import com.louisngatale.hostelmanagementservice.models.responses.OccupiedBeds;
 import com.louisngatale.hostelmanagementservice.models.responses.RoomRequestsResponse;
 import com.louisngatale.hostelmanagementservice.repositories.AppUser.StudentDetailsDao;
 import com.louisngatale.hostelmanagementservice.repositories.AppUser.UserDao;
@@ -102,5 +104,13 @@ public class WardenService {
             return "Deleted";
         }
             return "Request not found";
+    }
+
+    public OccupiedBeds beds() {
+        List<BedSingleResponse> responses = new ArrayList<>();
+        bedDao.findAllByOccupied(true).forEach(item -> {
+            responses.add(new BedSingleResponse(item.getId(),item.getBed(),item.getOwner(),item.getRoom().getId()));
+        });
+        return new OccupiedBeds(responses);
     }
 }
