@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface RequestsDao extends JpaRepository<Requests,Integer> {
     List<Requests> findByRequestedBy(Integer id);
+
+    List<Requests> findAllByRequestedBy(Integer id);
 }

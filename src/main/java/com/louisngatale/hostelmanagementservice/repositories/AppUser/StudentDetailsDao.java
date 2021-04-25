@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
 @Repository
+@Transactional
 public interface StudentDetailsDao extends JpaRepository<StudentDetails,Integer> {
 
     @Modifying
     @Query("update StudentDetails sd set sd.roomId = :roomId where sd.studentId = :id")
-    int updateBedId(@Param("id") User username, @Param("roomId")  String roomId);
+    int updateBedId(@Param("id") User username, @Param("roomId") String roomId);
 }

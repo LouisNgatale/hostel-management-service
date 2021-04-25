@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
+
 @Repository
+@Transactional
 public interface BedDao extends JpaRepository<Bed,Integer> {
     @Modifying
     @Query("update Bed bed set bed.owner = :owner, bed.occupied = true where bed.id = :id")

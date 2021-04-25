@@ -1,6 +1,7 @@
 package com.louisngatale.hostelmanagementservice.models.responses;
 
 public class HostelResponse {
+    private  Integer id;
     private String hostel;
     private String wing;
     private String floor;
@@ -36,8 +37,9 @@ public class HostelResponse {
         this.condition = condition;
         this.status = status;
     }
-    public HostelResponse(String hostel, String wing, String floor, Integer roomId, String room, String availability, String condition, String status,String studentName,Integer requestedBy) {
+    public HostelResponse(Integer id,String hostel, String wing, String floor, Integer roomId, String room, String availability, String condition, String status,String studentName,Integer requestedBy) {
         this.hostel = hostel;
+        this.id = id;
         this.wing = wing;
         this.floor = floor;
         this.roomId = roomId;
@@ -47,6 +49,14 @@ public class HostelResponse {
         this.status = status;
         this.studentName = studentName;
         this.requestedBy = requestedBy;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getStudentName() {

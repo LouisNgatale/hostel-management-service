@@ -1,13 +1,11 @@
 package com.louisngatale.hostelmanagementservice.controllers;
 
 
+import com.louisngatale.hostelmanagementservice.models.requests.ApplicationRequest;
 import com.louisngatale.hostelmanagementservice.services.hostel.WardenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -20,5 +18,15 @@ public class WardenController {
     @RequestMapping(value = "/applications",method = RequestMethod.GET)
     public ResponseEntity<?> applications(){
         return ResponseEntity.ok(wardenService.applications());
+    }
+
+    @RequestMapping(value = "/applications/{id}/accept",method = RequestMethod.POST)
+    public ResponseEntity<?> accept(@RequestBody ApplicationRequest request){
+        return ResponseEntity.ok(wardenService.accept(request));
+    }
+
+    @RequestMapping(value = "/applications/{id}/deny",method = RequestMethod.PUT)
+    public ResponseEntity<?> deny(@RequestBody ApplicationRequest request){
+        return ResponseEntity.ok(wardenService.deny(request));
     }
 }

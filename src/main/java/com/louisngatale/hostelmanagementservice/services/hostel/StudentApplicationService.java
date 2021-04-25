@@ -39,7 +39,7 @@ public class StudentApplicationService {
     @Autowired
     private UserDao userDao;
 
-    public ApplicationResponse apply(String roomId){
+    public ApplicationResponse apply(Integer roomId){
 //        Obtain authenticated user details
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -61,7 +61,7 @@ public class StudentApplicationService {
             if (bedCount.size() > 0 && sponsorship.equals("GOVERNMENT")){
                    Optional<Bed> bed =  bedCount.stream().findFirst();
                    int result = bedDao.updateOwner(username,bed.get().getId());
-                   int result2 = studentDetailsDao.updateBedId(user,roomId);
+                   int result2 = studentDetailsDao.updateBedId(user, String.valueOf(roomId));
                 return new ApplicationResponse("Successfully allocated!","Success");
             }else if (bedCount.size() > 0){
                     Optional<Bed> bed =  bedCount.stream().findFirst();
